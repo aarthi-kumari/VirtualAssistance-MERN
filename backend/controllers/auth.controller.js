@@ -1,6 +1,9 @@
-import genToken from "../config/token.js"
-import User from "../models/user.model.js"
-import bcrypt from 'bcryptjs'
+// Import helper functions and models
+import genToken from "../config/token.js" // Function to generate JWT token
+import User from "../models/user.model.js" // User model for MongoDB
+import bcrypt from 'bcryptjs' // Library for hashing passwords
+// Controller for user signup
+// Handles registration logic: checks for existing email, validates password, hashes password, creates user, and sets JWT cookie
 export const signUp=async (req,res)=>{
     try{
         const {name,email,password}=req.body
@@ -32,6 +35,8 @@ export const signUp=async (req,res)=>{
     }
 }
 
+// Controller for user login
+// Handles login logic: checks if user exists, compares password, sets JWT cookie if successful
 export const Login=async (req,res)=>{
     try{
         const {email,password}=req.body
@@ -60,6 +65,8 @@ export const Login=async (req,res)=>{
     }
 }
 
+// Controller for user logout
+// Clears the authentication token cookie to log the user out
 export const logout=async (req,res)=>{
     try{
         res.clearCookie("token")
